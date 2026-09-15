@@ -29,6 +29,7 @@ export const styles = StyleSheet.create({
   },
   percentage: {
     fontSize: 14,
+    color: colors.blue[500],
     fontFamily: fontFamily.bold,
   },
   progress: {
