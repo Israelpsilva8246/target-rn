@@ -6,14 +6,16 @@
   "dependencies": {
     "@expo-google-fonts/inter": "^0.4.2",
     "@expo/vector-icons": "^15.0.2",
-    "expo": "~57.0.21",
+    "dayjs": "^1.11.13",
+    "expo": "~57.0.25",
     "expo-constants": "~57.0.17",
     "expo-font": "~57.0.3",
-    "expo-linear-gradient": "~57.0.1",
-    "expo-linking": "~57.0.9",
-    "expo-router": "~57.0.20",
+    "expo-linear-gradient": "~57.0.2",
+    "expo-linking": "~57.0.11",
+    "expo-router": "~57.0.23",
+    "expo-sqlite": "~57.0.3",
     "expo-status-bar": "~57.0.1",
-    "react": "19.3.0",
+    "react": "19.2.3",
     "react-native": "0.86.3",
     "react-native-currency-input": "^1.1.1",
     "react-native-safe-area-context": "~5.7.0",
@@ -33,6 +35,7 @@
   "private": true,
   "devDependencies": {
     "@types/react": "~19.2.4",
+    "prettier": "^3.9.6",
     "typescript": "~6.0.3"
   }
 }
