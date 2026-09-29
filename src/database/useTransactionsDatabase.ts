@@ -11,8 +11,8 @@ export type TransactionResponse = {
   target_id: number;
   amount: number;
   observation: string;
-  created_at: Date;
-  updated_at: Date;
+  created_at: string;
+  updated_at: string;
 };
 
 export type Summary = {
@@ -31,7 +31,7 @@ export function useTransactionsDataBase() {
             ($target_id, $amount, $observation)
     `);
 
-    statement.executeAsync({
+    await statement.executeAsync({
       $target_id: data.target_id,
       $amount: data.amount,
       $observation: data.observation ?? null,
@@ -39,12 +39,13 @@ export function useTransactionsDataBase() {
   }
 
   function listByTargetId(id: number) {
-    return database.getAllAsync<TransactionResponse>(`
-        SELECT id, target_id, amount, observation, created_at, updated_at
+    return database.getAllAsync<TransactionResponse>(
+      `SELECT id, target_id, amount, observation, created_at, updated_at
         FROM transactions
-        WHERE target_id = ${id}
-        ORDER BY created_at DESC
-    `);
+        WHERE target_id = $target_id
+        ORDER BY created_at DESC`,
+      { $target_id: id },
+    );
   }
 
   async function remove(id: number) {
