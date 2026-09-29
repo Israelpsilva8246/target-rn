@@ -9,6 +9,7 @@ import { Alert, View, StatusBar } from 'react-native';
 import { TransactionTypes } from '@/utils/TransactionTypes';
 
 import { useTransactionsDataBase } from '@/database/useTransactionsDatabase';
+import { useTargetDataBase } from '@/database/useTargetDataBase';
 
 export default function Transaction() {
   const [amount, setAmount] = useState(0);
@@ -19,11 +20,23 @@ export default function Transaction() {
   const params = useLocalSearchParams<{ id: string }>();
 
   const transactionsDataBase = useTransactionsDataBase();
+  const targetDataBase = useTargetDataBase();
 
   async function handleCreate() {
     try {
       if (amount <= 0) {
         return Alert.alert('Atenção!', 'Preencha o valor. A transação deve ser maior que zero.');
+      }
+
+      if (type === TransactionTypes.Output) {
+        const target = await targetDataBase.show(Number(params.id));
+
+        if (!target || target.current < amount) {
+          return Alert.alert(
+            'Atenção!',
+            'O valor da retirada não pode ser maior que o valor guardado.',
+          );
+        }
       }
 
       setIsCreating(true);

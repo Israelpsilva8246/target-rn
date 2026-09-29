@@ -100,6 +100,7 @@ export default function Target() {
     } catch (error) {
       Alert.alert('Erro', 'Não foi possivel remover a meta.');
       console.log(error);
+      setIsProcessing(false);
     }
   }
 

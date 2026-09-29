@@ -60,6 +60,11 @@ export default function Index() {
     } catch (error) {
       Alert.alert('Erro', 'Não foi possivel carregar o resumo.');
       console.log(error);
+      return {
+        total: numberToCurrency(0),
+        input: { label: 'Entradas', value: numberToCurrency(0) },
+        output: { label: 'Saídas', value: numberToCurrency(0) },
+      };
     }
   }
 
